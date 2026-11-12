@@ -1,0 +1,27 @@
+name: Analytics service CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  service-ci:
+    uses: zzRaphazz/toggle-master-pipeline-workflows/.github/workflows/service-ci.yml@v1
+    with:
+      service: analytics-service
+      language: python
+      sonar_organization: ${{ vars.SONAR_ORGANIZATION }}
+      sonar_project_key: ${{ vars.SONAR_PROJECT_KEY }}
+      gitops_repository: zzRaphazz/toggle-master-k8s-manifests
+      gitops_file: apps/analytics-service/deployment.yaml
+    secrets:
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
