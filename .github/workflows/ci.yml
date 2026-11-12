@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   service-ci:
-    uses: zzRaphazz/toggle-master-pipeline-workflows/.github/workflows/service-ci.yml@v1.0.2
+    uses: zzRaphazz/toggle-master-pipeline-workflows/.github/workflows/service-ci.yml@v1.0.4
     with:
       service: analytics-service
       language: python
