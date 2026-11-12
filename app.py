@@ -150,4 +150,5 @@ start_worker()
 
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 8005))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    # Container traffic must reach the service on its pod network interface.
+    app.run(host='0.0.0.0', port=port, debug=False)  # nosec B104
